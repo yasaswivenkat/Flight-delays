@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Prediction of Flight Delay</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", sans-serif;
+        background-image: url("{{ url_for('static', filename='flight-bg.jpg') }}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        color: white;
+      }
+      h1 {
+        color: #ffffff;
+        margin-top: 30px;
+        font-size: 2.5em;
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+      }
+      form {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 30px;
+        border-radius: 20px;
+        margin-top: 20px;
+        width: 320px;
+        color: white;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+      }
+      label {
+        display: block;
+        margin-top: 12px;
+        font-weight: 500;
+      }
+      input[type="text"],
+      select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 6px;
+        border: none;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.9);
+        color: #000;
+      }
+      input[type="submit"] {
+        background-color: #ff9800;
+        color: white;
+        font-weight: bold;
+        padding: 12px;
+        margin-top: 20px;
+        width: 100%;
+        border: none;
+        border-radius: 8px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      input[type="submit"]:hover {
+        background-color: #e67e00;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Prediction of Flight Delay</h1>
+    <form action="/prediction" method="post">
+      <label>Enter the Flight Number:</label>
+      <input type="text" name="name" required />
+
+      <label>Month:</label>
+      <input type="text" name="month" required />
+
+      <label>Day of Month:</label>
+      <input type="text" name="dayofmonth" required />
+
+      <label>Day of Week:</label>
+      <input type="text" name="dayofweek" required />
+
+      <label>Origin:</label>
+      <select name="origin" required>
+        <option value="msp">MSP</option>
+        <option value="dtw">DTW</option>
+        <option value="jfk">JFK</option>
+        <option value="sea">SEA</option>
+        <option value="atl">ATL</option>
+      </select>
+
+      <label>Destination:</label>
+      <select name="destination" required>
+        <option value="msp">MSP</option>
+        <option value="dtw">DTW</option>
+        <option value="jfk">JFK</option>
+        <option value="sea">SEA</option>
+        <option value="atl">ATL</option>
+      </select>
+
+      <label>Scheduled Departure Time:</label>
+      <input type="text" name="dept" required />
+      <label>Scheduled Arrival Time:</label>
+      <input type="text" name="arrtime" required />
+      <label>Actual Departure Time:</label>
+      <input type="text" name="actdept" required />
+      <input type="submit" value="SUBMIT" />
+    </form>
+
+    {% if showcase %}
+    <h2 style="color: yellow; margin-top: 20px">{{ showcase }}</h2>
+    {% endif %}
+  </body>
+</html>
